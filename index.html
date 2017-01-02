@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>Instant Base64 Image</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="text-align:center;margin: 0 auto; width:80%">
+    <h2>Instant Image To Base64</h2>
+	<div class="modal-body">
+	<input style="padding: 11px;width: 100%;cursor: pointer;background: white;color: black;" id="image" onchange="result(this);" class="well" type="file">
+	<input onclick="select()" class="form-control" style="margin-top: 10px; height: 50px;" id="tobase64" placeholder="Code Will Appear Here" alt="base64link">
+	<a style="display:none" id="linkopen" target="_blank" href="#">View!</a>
+    </div>
+</body>
+</html>
+<script>
+function result(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#tobase64')
+                        .attr('value', e.target.result);
+					$("#linkopen").attr({
+                    "href" : e.target.result,
+                    "style" : "display:block;margin-top: 20px;"
+                        });
+                };
+				
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
